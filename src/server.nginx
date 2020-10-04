@@ -7,7 +7,7 @@ server {
     keepalive_timeout 5;
     reset_timedout_connection on;
 
-    access_log off;
+    access_log /var/log/nginx/access.log;
     error_log /var/log/nginx/error.log crit;
 
     location / {
