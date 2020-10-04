@@ -61,6 +61,8 @@ while True:
     except Exception as exc:
         print('Unexpected Error: {}'.format(str(exc)))
         current_rebuild_result = 'ERROR! {}'.format(str(exc))
+        end_time = datetime.datetime.now()
+        _print_history(start_time, end_time, current_rebuild_result)
         web_server_process.kill()
         sys.exit(1)
 
