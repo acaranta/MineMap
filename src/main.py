@@ -5,6 +5,7 @@ import os
 import shutil
 import subprocess
 import time
+import sys
 
 from rebuild import RebuildException, OverviewerMapBuilder
 from settings import CONFIGURATION_FILE_PATH, LOG_FILE_PATH, HISTORY_FILE_PATH, RENDER_CONFIGURATION_FILE_PATH, \
@@ -57,6 +58,12 @@ while True:
     except RebuildException as exc:
         print('Error has occurred: {}'.format(str(exc)))
         current_rebuild_result = 'ERROR! {}'.format(str(exc))
+    except Exception as exc:
+        print('Unexpected Error: {}'.format(str(exc)))
+        current_rebuild_result = 'ERROR! {}'.format(str(exc))
+        web_server_process.kill()
+        sys.exit(1)
+
 
     end_time = datetime.datetime.now()
 
